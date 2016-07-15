@@ -56,8 +56,16 @@ function hyperquest (uri, opts, cb, extra) {
             dup.emit('response', res);
             if (req.duplex) res.pipe(rs)
             else {
+              try
+              {
                 res.on('data', function (buf) { rs.push(buf) });
                 res.on('end', function () { rs.push(null) });
+              }
+              catch(err)
+              {
+                
+              }
+                
             }
         });
         
